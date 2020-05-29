@@ -19,10 +19,11 @@ class BuyRequest {
         //console.log('this is data', data);
         for (const value of data) {
             const condition = value['Condition'].toLowerCase()
+            const productsName = value['Product Name'].toLowerCase()
             const param = {
                 condition,
                 storageSize:value['Storage Size'],
-                productsName:value['Product Name'],
+                productsName:productsName,
                 variant: [
                     {
                        grade:'A1',
@@ -76,9 +77,13 @@ class BuyRequest {
          if (!skip) {
            skip = 0;
          }
+         // const value = q.split(',')
+         // for (const val of value) {
+            
+         // }
+         
          const search = q == "undefined" ? {} : { $text: { $search: `\"${q}\"` }}; 
             const addrequest = await buyRequestServices.getBuyRequest(search,limit,skip)
-            console.log( addrequest);
             return res.status(200).send(responsesHelper.success(200, addrequest,'added succesfully',{}))
           
          // const count = await buyRequestServices.counntDocument({});

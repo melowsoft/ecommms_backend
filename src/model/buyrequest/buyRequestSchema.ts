@@ -14,9 +14,14 @@ const buyRequestSchema = new Mongoose.Schema(
     type:String,
     required:true
    },
+   image: {
+  type:String
+   },
     productsName: {
       type: String,
-      required:true
+      required:true,
+      trim:true
+
     },
     variant: [{
       grade: {
